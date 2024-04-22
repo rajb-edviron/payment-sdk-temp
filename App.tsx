@@ -24,6 +24,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+// import  Payment  from 'edviron-payment-sdk-version-1';
 import { Payment } from './component';
 
 type SectionProps = PropsWithChildren<{
@@ -80,7 +81,7 @@ function App(): React.JSX.Element {
   return (
     <View style={styles.container}>
     {paymentStatus === 'pending' && (
-      <Payment collectId={`6626319412ddb21fc209adb4`} onSuccess={success} onFailure={fail} />
+      <Payment collectId={`662643288e2e7e58af3cb227`} onSuccess={success} onFailure={fail} mode={`sandbox`} />
     )}
     {paymentStatus === 'success' && <Success />}
     {paymentStatus === 'failure' && <Failure />}
