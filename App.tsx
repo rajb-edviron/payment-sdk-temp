@@ -24,7 +24,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-
+import { Payment } from './component';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -56,45 +56,35 @@ function Section({children, title}: SectionProps): React.JSX.Element {
   );
 }
 
+import { Success } from './component/Success';
+import { Failure } from './component/Failure';
+
 function App(): React.JSX.Element {
   const [show, setShow] = React.useState(false);
+  const [paymentStatus, setPaymentStatus] = React.useState<'success' | 'failure' | 'pending'>('pending');
   const isDarkMode = useColorScheme() === 'dark';
-
+  function success(){
+    console.log('check2 success2');
+    
+    setPaymentStatus('success');
+  }
+  
+  function fail(){
+    setPaymentStatus('failure');
+    
+  }
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-             <Text style={styles.highlight}>Input tag</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <View style={styles.container}>
+    {paymentStatus === 'pending' && (
+      <Payment collectId={`6626319412ddb21fc209adb4`} onSuccess={success} onFailure={fail} />
+    )}
+    {paymentStatus === 'success' && <Success />}
+    {paymentStatus === 'failure' && <Failure />}
+  </View>
   );
 }
 
@@ -114,6 +104,9 @@ const styles = StyleSheet.create({
   },
   highlight: {
     fontWeight: '700',
+  },
+  container: {
+    flex: 1,
   },
 });
 
