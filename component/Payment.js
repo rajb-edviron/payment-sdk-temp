@@ -1,10 +1,8 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { WebView } from 'react-native-webview';
-interface PaymentProps {
-    collectId: string;
-  }
-  export const Payment: React.FC<PaymentProps> = ({ collectId}) => {
+
+  export const Payment= ({ collectId}) => {
      
   return (
     <View style={styles.container}>
