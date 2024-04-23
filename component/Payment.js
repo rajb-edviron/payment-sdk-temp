@@ -30,26 +30,22 @@ export const Payment = ({collectId, onSuccess, onFailure, mode}) => {
 
   const handleNavigationStateChange = newNavState => {
     const {url} = newNavState;
-    console.log(url);
+    
     if (url.includes('payment-success') && url.includes(collectId)) {
-      console.log('check 2');
-
-      onSuccess();
+     onSuccess();
     } else if (url.includes('payment-failure') && url.includes(collectId)) {
-      console.log('check 2');
-
       onFailure();
     }
   };
   const url =
     mode === 'production'
-      ? `https://payments.edviron.com`
-      : `https://dev-payments.edviron.com`;
+      ? `https://pg.edviron.com/`
+      :`https://dev.pg.edviron.com/`
 
   return (
     <View style={styles.container}>
       <WebView
-        source={{uri: `${url}/edviron-pg/sdk-redirect?collect_id=${collectId}`}}
+        source={{uri: `${url}/collect-sdk-payments?collect_id=${collectId}`}}
         style={styles.webview}
         onNavigationStateChange={handleNavigationStateChange}
       />
