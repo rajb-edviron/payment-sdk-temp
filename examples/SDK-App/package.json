@@ -1,6 +1,7 @@
 {
-  "name": "edviron-react-native",
-  "version": "0.0.2",
+  "name": "prod-app",
+  "version": "0.0.1",
+  "private": true,
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
@@ -9,8 +10,9 @@
     "test": "jest"
   },
   "dependencies": {
+    "edviron-react-native": "0.0.2",
     "react": "18.2.0",
-    "react-native": "^0.73.7",
+    "react-native": "0.73.7",
     "react-native-webview": "^13.8.6"
   },
   "devDependencies": {
@@ -32,15 +34,5 @@
   },
   "engines": {
     "node": ">=18"
-  },
-  "files": [
-    "*",
-    "!node_modules",
-    "!android/app/build",
-    "!android/.gradle",
-    "!android/build",
-    "!examples",
-    "!*.tgz"
-    
-  ]
+  }
 }
